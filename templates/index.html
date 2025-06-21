@@ -1,25 +1,166 @@
-{% extends "_base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Customer Service Agent</title>
+    <link rel="stylesheet" href="/static/src/input.css" />
+  </head>
+  <body>
+    <style></style>
+    <div class="container">
+      <h1>AI Customer Service Agent</h1>
+      <p>Let our AI handle customer service calls for you</p>
 
-{% block content %}
-    <div class="flex items-center justify-center h-screen bg-gray-50">
-        <div>
-          <h1 class="mb-6 text-4xl">Flowbite + Flask + Tailwind CSS Starter</h1>
-          <div class="w-auto mb-4 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-              <a href="/accordion" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Accordion</a>
-              <a href="/carousel" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Carousel</a>
-              <a href="/modal" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Modal</a>
-              <a href="/collapse" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Collapse</a>
-              <a href="/dial" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Speed Dial</a>
-              <a href="/dismiss" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Dismiss</a>
-              <a href="/drawer" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Drawer</a>
-              <a href="/dropdown" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Dropdown</a>
-              <a href="/popover" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Popover</a>
-              <a href="/tabs" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Tabs</a>
-              <a href="/tooltip" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Tooltip</a>
-              <a href="/input-counter" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Input Counter</a>
-              <a href="/datepicker" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Datepicker</a>
+      <div class="call-form">
+        <h2>Initiate a Call</h2>
+        <form id="callForm">
+          <div class="form-group">
+            <label for="user_number">Your Phone Number:</label>
+            <input
+              type="tel"
+              id="user_number"
+              name="user_number"
+              placeholder="+12025551234"
+              required
+            />
+            <small>Where we should notify you</small>
           </div>
-          <p class="mb-8">Learn more about <a href="https://flowbite.com/docs/getting-started/flask/" class="text-blue-600 hover:underline">Flowbite + Flask here</a>.</p>
-        </div>
+
+          <div class="form-group">
+            <label for="customer_service_number"
+              >Customer Service Number:</label
+            >
+            <input
+              type="tel"
+              id="customer_service_number"
+              name="customer_service_number"
+              placeholder="+18005551234"
+              required
+            />
+            <small>The number we should call</small>
+          </div>
+
+          <div class="form-group">
+            <label for="issue_description">Issue Description:</label>
+            <textarea
+              id="issue_description"
+              name="issue_description"
+              rows="4"
+              required
+            ></textarea>
+            <small>Describe your issue in detail</small>
+          </div>
+
+          <button type="submit" class="btn">Initiate AI Call</button>
+        </form>
+      </div>
+
+      <div id="callStatus" class="hidden">
+        <h2>Call Status</h2>
+        <div id="statusDetails"></div>
+        <button id="endCallBtn" class="btn btn-danger hidden">End Call</button>
+        <div id="conversationLog" class="conversation-log"></div>
+      </div>
     </div>
-{% endblock %}
+
+    <script>
+      let currentConversationId = null;
+
+      document
+        .getElementById("callForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch("/initiate_call", {
+              method: "POST",
+              body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+              alert(`Error: ${data.error}`);
+              return;
+            }
+
+            // Show call status section
+            currentConversationId = data.conversation_id;
+            document.getElementById("callStatus").classList.remove("hidden");
+            document.getElementById("endCallBtn").classList.remove("hidden");
+
+            // Update status
+            updateCallStatus(data.conversation_id);
+
+            // Start polling for updates
+            setInterval(() => updateCallStatus(data.conversation_id), 3000);
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Failed to initiate call");
+          }
+        });
+
+      document
+        .getElementById("endCallBtn")
+        .addEventListener("click", async () => {
+          if (!currentConversationId) return;
+
+          try {
+            const response = await fetch(`/end_call/${currentConversationId}`, {
+              method: "POST",
+            });
+
+            const data = await response.json();
+            if (data.status === "call_ended") {
+              alert("Call ended successfully");
+              updateCallStatus(currentConversationId);
+            }
+          } catch (error) {
+            console.error("Error ending call:", error);
+            alert("Failed to end call");
+          }
+        });
+
+      async function updateCallStatus(conversationId) {
+        try {
+          const response = await fetch(`/get_conversation/${conversationId}`);
+          const data = await response.json();
+
+          if (data.status === "success") {
+            const conv = data.conversation;
+            const statusDiv = document.getElementById("statusDetails");
+            const logDiv = document.getElementById("conversationLog");
+
+            // Update status
+            statusDiv.innerHTML = `
+                        <p><strong>Status:</strong> ${conv.context.status}</p>
+                        <p><strong>Call SID:</strong> ${
+                          conv.context.call_sid || "N/A"
+                        }</p>
+                        <p><strong>Issue:</strong> ${
+                          conv.context.issue_description
+                        }</p>
+                    `;
+
+            // Update conversation log
+            logDiv.innerHTML = "<h3>Conversation Log</h3>";
+            conv.history.forEach((msg, i) => {
+              const msgDiv = document.createElement("div");
+              msgDiv.className = `message ${msg.role}`;
+              msgDiv.innerHTML = `<strong>${msg.role}:</strong> ${msg.content}`;
+              logDiv.appendChild(msgDiv);
+            });
+
+            // Scroll to bottom
+            logDiv.scrollTop = logDiv.scrollHeight;
+          }
+        } catch (error) {
+          console.error("Error fetching call status:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
